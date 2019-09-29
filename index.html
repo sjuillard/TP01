@@ -42,7 +42,10 @@
                     <div class="form-row">
                         <div class="col-md-12 mb-3">
                             <label for="input-telephone">T&eacute;l&eacute;phone</label>
-                            <input type="tel" pattern="[0-9]{10}" class="form-control" id="input-telephone" placeholder="T&eacute;l&eacute;phone" required>
+                            <input type="tel" pattern="[0-9]{10}" class="form-control" id="input-telephone" placeholder="T&eacute;l&eacute;phone" aria-describedby="telephoneHelpBlock" required>
+                            <small id="telephoneHelpBlock" class="form-text text-muted">
+                                Il doit &ecirc;tre sous la forme 0300000000
+                            </small>
                         </div>
                     </div>
     
@@ -57,8 +60,8 @@
                         <input type="text" class="form-control" id="input-ville" placeholder="Ville" required>
                         </div>
                         <div class="col-md-3 mb-3">
-                        <label for="input-cp">Code postale</label>
-                        <input type="text" class="form-control" pattern="[0-9]{5}" id="input-cp" placeholder="Code postale" required>
+                        <label for="input-cp">Code postal</label>
+                        <input type="text" class="form-control" pattern="[0-9]{5}" id="input-cp" placeholder="Code postal" required>
                         </div>
                     </div>
                     
@@ -89,7 +92,7 @@
             </div>
         </div>
     </body>
-    <!-- W3C nous donnera une erreur mais la page pourra charger tranquillement sans que les scripts interferent dans ce chargement-->
+    <!-- W3C nous donnera une erreur mais la page pourra charger sans que les scripts interferent dans ce chargement-->
     <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js" ></script>
     <script
         src="http://code.jquery.com/jquery-3.4.1.min.js"
