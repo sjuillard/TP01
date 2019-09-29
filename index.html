@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <title>TP01</title>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet/less" type="text/css" href="styles.less" />
+    </head>
+    <body>
+        <div id='page'>
+            <div id="title" class='col-md-8'>
+                <h1>Formulaire</h1>
+            </div>
+            <div class='col-md-8'>
+                <form id="formulaireInscription">
+                    <!-- NOM PRENOM-->
+                    <div class="form-row">
+                        <div class="col-md-4 mb-3">
+                            <label for="input-prenom">Pr&eacute;nom</label>
+                            <input name="prenom" type="text" id="input-prenom" class="form-control" placeholder="Pr&eacute;nom" required />
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="input-nom">Nom</label>
+                            <input name="nom" type="text" id="input-nom" class="form-control" placeholder="Nom" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <label>Civilit&eacute;</label>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="civilite1" name="input-civilite" class="custom-control-input" required>
+                                <label class="custom-control-label" for="civilite1">Mr</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="civilite2" name="input-civilite" class="custom-control-input" required>
+                                <label class="custom-control-label" for="civilite2">Mme</label>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- TELEPHONE -->
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <label for="input-telephone">T&eacute;l&eacute;phone</label>
+                            <input type="tel" pattern="[0-9]{10}" class="form-control" id="input-telephone" placeholder="T&eacute;l&eacute;phone" required>
+                        </div>
+                    </div>
+    
+                    <!-- ADRESSE -->
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                        <label for="input-adresse">Adresse</label>
+                        <input type="text" class="form-control" id="input-adresse" placeholder="Adresse" required>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                        <label for="input-ville">Ville</label>
+                        <input type="text" class="form-control" id="input-ville" placeholder="Ville" required>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                        <label for="input-cp">Code postale</label>
+                        <input type="text" class="form-control" pattern="[0-9]{5}" id="input-cp" placeholder="Code postale" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <label for="input-email">E-mail</label>
+                            <input type="email" class="form-control" id="input-email" placeholder="E-mail" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <label for="input-login">Login</label>
+                            <input type="text" class="form-control" id="input-login" placeholder="Login" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <label for="input-password">Password</label>
+                            <input type="password" class="form-control" id="input-password" placeholder="Password" required aria-describedby="passwordHelpBlock">
+                            <small id="passwordHelpBlock" class="form-text text-muted">
+                                Votre mot de passe doit contenir au minimum 8 caract&egrave;res, avec une majuscule, une minuscule et un chiffre.
+                            </small>
+                        </div>
+                    </div>
+                    <button id="btnSend" class="btn btn-primary" type="submit">Envoyer</button>
+                </form>
+            </div>
+        </div>
+    </body>
+    <!-- W3C nous donnera une erreur mais la page pourra charger tranquillement sans que les scripts interferent dans ce chargement-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js" ></script>
+    <script
+        src="http://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous">
+    </script>
+    <script>
+
+        $(document).ready(function(){
+           
+           $("#btnSend").click(function(evt) {
+               var re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{8,}/,
+                   ok = true;
+               
+                if( $("#input-password").val().length < 8) {
+                    alert('Le mot de passe n\'est pas assez long!');
+                    ok = false;
+                } else if(!re.test($("#input-password").val())){
+                    alert('Le mot de passe ne contient pas à minima une majuscule, une minuscule et un chiffre!');
+                    ok = false;
+                }
+                
+                if(!ok) {
+                    evt.preventDefault();
+                } else {
+                    alert("Formulaire OK!");
+                }
+           });
+           
+        });
+
+    </script>
+</html>
