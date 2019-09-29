@@ -44,7 +44,7 @@
                             <label for="input-telephone">T&eacute;l&eacute;phone</label>
                             <input type="tel" pattern="[0-9]{10}" class="form-control" id="input-telephone" placeholder="T&eacute;l&eacute;phone" aria-describedby="telephoneHelpBlock" required>
                             <small id="telephoneHelpBlock" class="form-text text-muted">
-                                Il doit &ecirc;tre sous la forme 0300000000
+                                Il doit &ecirc;tre sous la forme 0600000000 ou +33600000000
                             </small>
                         </div>
                     </div>
@@ -104,14 +104,22 @@
         $(document).ready(function(){
            
            $("#btnSend").click(function(evt) {
-               var re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{8,}/,
+               var regexPassword = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{8,}/,
+                   regexCodePostal = /^(([0-8][0-9])|(9[0-5])|(2[ab]))[0-9]{3}$/,
+                   regexTelephone = /^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$/,
                    ok = true;
                
                 if( $("#input-password").val().length < 8) {
                     alert('Le mot de passe n\'est pas assez long!');
                     ok = false;
-                } else if(!re.test($("#input-password").val())){
+                } else if(!regexPassword.test($("#input-password").val())){
                     alert('Le mot de passe ne contient pas à minima une majuscule, une minuscule et un chiffre!');
+                    ok = false;
+                } else if(!regexCodePostal.test($("#input-cp").val())) {
+                    alert("Le code postal ne rempli pas les critères des codes postaux français!");
+                    ok = false;
+                } else if(!regexTelephone.test($("#input-telephone").val())) {
+                    alert("Le num&eacute;ro de t&eacute;l&eacute;phone n'est pas bon!");
                     ok = false;
                 }
                 
